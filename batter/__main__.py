@@ -1,3 +1,7 @@
+import os
+
+#from raylibpy import init_audio_device
+os.environ['RAYLIB_BIN_PATH'] = '.'
 import random
 from game import constants
 from game.director import Director
@@ -8,9 +12,7 @@ from game.input_service import InputService
 from game.output_service import OutputService
 from game.physics_service import PhysicsService
 from game.audio_service import AudioService
-
-# TODO: Add imports similar to the following when you create these classes
-# from game.brick import Brick
+from game.brick import brick
 # from game.ball import Ball
 # from game.paddle import Paddle
 # from game.control_actors_action import ControlActorsAction
@@ -22,8 +24,9 @@ def main():
 
     # create the cast {key: tag, value: list}
     cast = {}
+    bricks = []
 
-    cast["bricks"] = []
+    cast["bricks"] = [bricks]
     # TODO: Create bricks here and add them to the list
 
     cast["balls"] = []
@@ -53,8 +56,9 @@ def main():
 
     # Start the game
     output_service.open_window("Batter");
-    audio_service.start_audio()
-    audio_service.play_sound(constants.SOUND_START)
+    #init_audio_device()
+    #audio_service.start_audio()
+    #audio_service.play_sound(constants.SOUND_START)
     
     director = Director(cast, script)
     director.start_game()
