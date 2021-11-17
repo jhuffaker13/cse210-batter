@@ -12,9 +12,9 @@ from game.input_service import InputService
 from game.output_service import OutputService
 from game.physics_service import PhysicsService
 from game.audio_service import AudioService
-from game.brick import brick
-# from game.ball import Ball
-# from game.paddle import Paddle
+from game.brick import Brick
+from game.ball import Ball
+from game.paddle import Paddle
 # from game.control_actors_action import ControlActorsAction
 # from game.handle_collisions_action import HandleCollisionsAction
 # from game.handle_off_screen_action import HandleOffScreenAction
@@ -24,15 +24,33 @@ def main():
 
     # create the cast {key: tag, value: list}
     cast = {}
+    cast['bricks'] = []
     bricks = []
-
-    cast["bricks"] = [bricks]
+    for i in range (15):
+        for n in range(8):
+            brick = Brick()
+            position = Point(25+(i*50), 20+(n*30))
+            brick.set_position(position)
+            bricks.append(brick)
+    cast["bricks"] = bricks
     # TODO: Create bricks here and add them to the list
 
     cast["balls"] = []
+    balllist = []
+    ball = Ball()
+    position = Point(600, 300)
+    ball.set_position(position)
+    balllist.append(ball)
+    cast["balls"] = balllist
     # TODO: Create a ball here and add it to the list
 
     cast["paddle"] = []
+    paddlelist = []
+    paddle = Paddle()
+    position = Point (750, 300)
+    paddle.set_position(position)
+    paddlelist.append(paddle)
+    cast["paddle"] = paddlelist
     # TODO: Create a paddle here and add it to the list
 
 
@@ -55,15 +73,15 @@ def main():
 
 
     # Start the game
-    output_service.open_window("Batter");
+    output_service.open_window("Batter")
     #init_audio_device()
-    #audio_service.start_audio()
-    #audio_service.play_sound(constants.SOUND_START)
+    audio_service.start_audio()
+    audio_service.play_sound(constants.SOUND_START)
     
     director = Director(cast, script)
     director.start_game()
 
-    audio_service.stop_audio()
+    #audio_service.stop_audio()
 
 if __name__ == "__main__":
     main()
