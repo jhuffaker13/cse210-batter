@@ -12,13 +12,14 @@ class OutputService:
         None
     """
 
-    def __init__(self):
+    def __init__(self, cast):
         """The class constructor.
         
         Args:
             self (OutputService): An instance of OutputService.
         """
         self._textures = {}
+        self._cast = cast
 
     def open_window(self, title):
         """
@@ -97,6 +98,16 @@ class OutputService:
         """ 
         for actor in actors:
             self.draw_actor(actor)
+
+    def game_end(self):
+        if len(self._cast["balls"]) == 0:
+            color = raylibpy.WHITE
+
+    
+        color = raylibpy.ORANGE
+        text = "Game Over!"
+
+        raylibpy.draw_text(text, 400, 300, 40, color)
     
     def flush_buffer(self):
         """Renders the screen.
@@ -105,3 +116,5 @@ class OutputService:
             self (OutputService): An instance of OutputService.
         """ 
         raylibpy.end_drawing()
+
+    

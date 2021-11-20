@@ -9,3 +9,4 @@ class Ball(Actor):
         self.set_width(constants.BALL_WIDTH)
         self.set_height(constants.BALL_HEIGHT)
         self.set_image(constants.IMAGE_BALL)
+        self.get_position()
