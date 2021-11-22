@@ -44,7 +44,8 @@ class Director:
             # TODO: Add some logic like the following to handle game over conditions
             if len(self._cast["balls"]) == 0:  
                 self.audio_service.play_sound(constants.SOUND_OVER)
-                test_var = 0              
+                test_var = 0
+                print("Press the SPACE BAR to close the game!")              
                 while test_var == 0:
                     if self.input_service.is_space_pressed():
                         test_var = 1
